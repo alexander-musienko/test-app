@@ -12,7 +12,7 @@ x-dev-environment: &dev-environment
   HOME: /home/dev
   npm_config_cache: /home/dev/.npm
   # Браузер на хосте ходит через проброс порта 8081
-  REACT_NATIVE_PACKAGER_HOSTNAME: localhost
+  REACT_NATIVE_PACKAGER_HOSTNAME: "192.168.31.126"
   # CI=true отключает Metro watch — для разработки не используем
   CI: "false"
   # Надёжный HMR при bind-mount (Dev Container / Docker Desktop)
@@ -42,6 +42,10 @@ services:
   start:
     <<: *dev-template
     command: npm run start
+
+  start-host:
+    <<: *dev-template
+    command: npm run start:host
 
   web:
     <<: *dev-template
